@@ -3,7 +3,6 @@ import {
   View,
   Text,
   FlatList,
-  Button,
   TouchableOpacity,
   StyleSheet
 } from "react-native";
@@ -13,11 +12,10 @@ import { Feather } from "@expo/vector-icons";
 import { Container } from "./styles";
 
 export default function Index({ navigation }) {
-  const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
+  const { state, deleteBlogPost } = useContext(BlogContext);
 
   return (
     <Container>
-      <Button title="Add Post" onPress={addBlogPost} />
       <FlatList
         data={state}
         keyExtractor={item => item.title}

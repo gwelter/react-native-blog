@@ -1,14 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 import { Context as BlogContext } from "../../context";
 
 // import { Container } from './styles';
 
-export default function Create({ navigation }) {
-  const { addBlogPost } = useContext(BlogContext);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+export default function Edit({ navigation }) {
+  const { state, editBlogPost } = useContext(BlogContext);
+  const id = navigation.getParam("id");
+  const blogPost = state.find(post => post.id === id);
+
+  const [title, setTitle] = useState(blogPost.title);
+  const [content, setContent] = useState(blogPost.content);
+
+  console.log({ id, title, content });
 
   return (
     <View>
@@ -26,9 +31,9 @@ export default function Create({ navigation }) {
       />
       <Button
         disabled={!title || !content}
-        title="Add blog post"
+        title="Save"
         onPress={() => {
-          addBlogPost(title, content, () => {
+          editBlogPost(id, title, content, () => {
             navigation.goBack();
           });
         }}

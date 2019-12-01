@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 import { Context as BlogContext } from "../../context";
 
@@ -15,3 +16,14 @@ export default function Show({ navigation }) {
     </View>
   );
 }
+
+Show.navigationOptions = ({ navigation }) => {
+  const id = navigation.getParam("id");
+  return {
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("Edit", { id })}>
+        <Feather name="edit-2" size={30} />
+      </TouchableOpacity>
+    )
+  };
+};
