@@ -4,11 +4,13 @@ import { createStackNavigator } from "react-navigation-stack";
 import { Provider } from "./src/context";
 
 import Index from "./src/screens/Index";
+import Show from "./src/screens/Show";
 
 const App = createAppContainer(
   createStackNavigator(
     {
-      Index
+      Index,
+      Show
     },
     {
       initialRouteName: "Index",
