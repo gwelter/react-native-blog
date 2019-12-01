@@ -5,12 +5,14 @@ import { Provider } from "./src/context";
 
 import Index from "./src/screens/Index";
 import Show from "./src/screens/Show";
+import Create from "./src/screens/Create";
 
 const App = createAppContainer(
   createStackNavigator(
     {
       Index,
-      Show
+      Show,
+      Create
     },
     {
       initialRouteName: "Index",

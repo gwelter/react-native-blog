@@ -40,6 +40,14 @@ export default function Index({ navigation }) {
   );
 }
 
+Index.navigationOptions = ({ navigation }) => ({
+  headerRight: (
+    <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+      <Feather name="plus" size={30} />
+    </TouchableOpacity>
+  )
+});
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
