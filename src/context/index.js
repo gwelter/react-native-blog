@@ -49,14 +49,19 @@ function addBlogPost(dispatch) {
 }
 
 function editBlogPost(dispatch) {
-  return (id, title, content, callback) => {
-    dispatch({ type: "EDIT_BLOG_POST", payload: { id, title, content } });
+  return async (id, title, content, callback) => {
+    const response = await jsonServer.put(`/blogPosts/${id}`, {
+      title,
+      content
+    });
+    dispatch({ type: "EDIT_BLOG_POST", payload: response.data });
     callback();
   };
 }
 
 function deleteBlogPost(dispatch) {
-  return id => {
+  return async id => {
+    await jsonServer.delete(`/blogPosts/${id}`);
     dispatch({ type: "DELETE_BLOG_POST", payload: id });
   };
 }
